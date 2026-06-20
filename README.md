@@ -95,6 +95,24 @@ lipcoding2026_solbao-dev/
 ## 배포 URL
 - https://red-smoke-003835800.7.azurestaticapps.net/
 
+## 최종 제출 정보
+- GitHub 저장소: https://github.com/solbao-dev/lipcoding2026_solbao-dev
+- 라이브 URL: https://red-smoke-003835800.7.azurestaticapps.net/
+- 캐시 무효화 확인 URL: https://red-smoke-003835800.7.azurestaticapps.net/?verify=1781937246286
+- 배포 워크플로 성공 실행: https://github.com/solbao-dev/lipcoding2026_solbao-dev/actions/runs/27862999742
+
+## 최근 UI 변경
+- `앱 데이터 모두 초기화 (새로 시작)` 버튼 위치를 `1) GitHub 토큰 설정` 카드에서
+	`개인정보 보호 및 로컬 데이터 처리` 카드로 이동했습니다.
+- 의도: 데이터 삭제 동작을 보안/프라이버시 문맥에서 더 명확하게 인지하도록 UX를 정리했습니다.
+
+## 최종 검증 상태
+- 토큰 저장/삭제 동작 확인
+- 할 일 추가/완료/삭제 동작 확인
+- 데모 분석/실제 분석 흐름 확인
+- localStorage 저장/복원 확인
+- Azure 배포 반영 및 위치 변경 반영 확인
+
 ## Azure 배포 상태
 - Azure Static Web Apps 배포 완료
 - 프로덕션 URL 접속 확인 완료
