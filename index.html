@@ -635,6 +635,9 @@
           <li class="security-info-item">GitHub Models API 호출 시에만 토큰이 GitHub로 전달됨</li>
           <li class="security-info-item">모든 개인 데이터는 이 브라우저에서만 관리됨</li>
         </ul>
+        <div class="toolbar">
+          <button class="secondary" id="resetStorageBtn" type="button">앱 데이터 모두 초기화 (새로 시작)</button>
+        </div>
       </article>
 
       <article class="card">
@@ -672,9 +675,6 @@
           <input id="tokenInput" class="grow" type="password" placeholder="GitHub Personal Access Token 입력" autocomplete="off">
           <button class="success" id="saveTokenBtn" type="button">토큰 저장</button>
           <button class="secondary" id="clearTokenBtn" type="button">토큰 삭제</button>
-        </div>
-        <div class="token-row">
-          <button class="secondary" id="resetStorageBtn" type="button" style="flex: 1;">앱 데이터 모두 초기화 (새로 시작)</button>
         </div>
         <p class="hint">토큰은 이 브라우저 localStorage에 저장됩니다.</p>
         <section class="token-mini-card">
