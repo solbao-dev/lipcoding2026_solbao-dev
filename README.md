@@ -101,6 +101,13 @@ lipcoding2026_solbao-dev/
 
 ## 배포 메모
 대회 중 재배포가 필요하면 다음 흐름으로 진행합니다.
-1. `dist` 폴더 재생성 (`index.html`, `staticwebapp.config.json` 복사)
-2. SWA deployment token 확인
-3. SWA CLI로 production 재배포
+1. `main` 브랜치에 커밋/푸시
+2. GitHub Actions 워크플로(`.github/workflows/azure-static-web-apps.yml`) 실행 확인
+3. Azure Static Web Apps 프로덕션 URL에서 반영 확인
+
+### 배포 경로 고정
+- 배포 소스는 루트 경로(`/`)로 고정합니다.
+- `index.html`과 `staticwebapp.config.json`을 직접 배포하므로 `dist` 수동 동기화가 필수가 아닙니다.
+
+### GitHub Secret
+- 저장소 Secrets에 `AZURE_STATIC_WEB_APPS_API_TOKEN`을 등록해야 자동 배포가 동작합니다.
