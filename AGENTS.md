@@ -32,7 +32,9 @@ const response = await fetch("https://models.github.ai/inference/chat/completion
 });
 ```
 - API 키(GitHub Token)는 사용자가 입력창에 직접 넣도록 UI 구성
-- 또는 환경변수로 처리 (Azure 배포 시 설정)
+- 현재 정적 웹앱 구현에서는 사용자가 입력창에 직접 넣는 방식을 기본으로 사용
+- Azure 환경변수 방식은 서버사이드 API 또는 Functions 프록시가 있을 때만 안전하게 사용 가능
+- 심사자나 자동 검증이 토큰을 넣기 어려운 경우를 위해 앱에 데모 분석 버튼을 함께 제공
 
 ## 절대 원칙
 
