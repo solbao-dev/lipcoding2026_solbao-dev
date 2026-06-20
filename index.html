@@ -662,10 +662,6 @@
         </ol>
       </article>
 
-      <article class="card">
-        <h2>현재 검증 상태</h2>
-        <ul id="checklist" class="checklist"></ul>
-      </article>
     </section>
 
     <section class="grid">
@@ -1162,6 +1158,10 @@
     }
 
     function renderChecklist() {
+      if (!checklistEl) {
+        return;
+      }
+
       const tokenExists = !!(localStorage.getItem(STORAGE_KEYS.token) || "").trim();
       const todoCount = todos.length;
       const completedCount = todos.filter((todo) => todo.completed).length;
