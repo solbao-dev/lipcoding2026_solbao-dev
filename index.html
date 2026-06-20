@@ -673,6 +673,9 @@
           <button class="success" id="saveTokenBtn" type="button">토큰 저장</button>
           <button class="secondary" id="clearTokenBtn" type="button">토큰 삭제</button>
         </div>
+        <div class="token-row">
+          <button class="secondary" id="resetStorageBtn" type="button" style="flex: 1;">앱 데이터 모두 초기화 (새로 시작)</button>
+        </div>
         <p class="hint">토큰은 이 브라우저 localStorage에 저장됩니다.</p>
         <section class="token-mini-card">
           <div class="token-mini-head">
@@ -748,18 +751,6 @@
         </section>
       </div>
     </section>
-
-    <section class="card final-checklist">
-      <h2>4) 제출 전 최종 점검</h2>
-      <p class="final-title">지금 확인하면 좋은 순서</p>
-      <ol class="final-list">
-        <li>샘플 할 일 넣기 후 진행률이 바뀌는지 확인</li>
-        <li>음성 입력 버튼과 권한 안내 문구가 보이는지 확인</li>
-        <li>토큰 없이 데모 분석 보기 버튼으로 AI 화면이 나오는지 확인</li>
-        <li>토큰 입력 후 실제 AI 분석 시작이 동작하는지 확인</li>
-        <li>배포 URL에서 새로고침 후 앱이 그대로 열리는지 확인</li>
-      </ol>
-    </section>
   </main>
 
   <script>
@@ -775,6 +766,7 @@
     const tokenInput = document.getElementById("tokenInput");
     const saveTokenBtn = document.getElementById("saveTokenBtn");
     const clearTokenBtn = document.getElementById("clearTokenBtn");
+    const resetStorageBtn = document.getElementById("resetStorageBtn");
     const copyTokenPathBtn = document.getElementById("copyTokenPathBtn");
 
     const todoInput = document.getElementById("todoInput");
@@ -1107,6 +1099,26 @@
       laterResultWrap.innerHTML = "";
       renderTodos();
       setStatus("할 일과 분석 결과를 모두 삭제했습니다.", false);
+    }
+
+    function resetStorage() {
+      const shouldReset = window.confirm("정말로 모든 데이터를 초기화하시겠습니까?\n\n- 저장된 토큰\n- 할 일 목록\n- 분석 결과\n\n모두 지워집니다.");
+      if (!shouldReset) return;
+
+      localStorage.removeItem(STORAGE_KEYS.token);
+      localStorage.removeItem(STORAGE_KEYS.todos);
+      localStorage.removeItem(STORAGE_KEYS.analysis);
+      tokenInput.value = "";
+      todoInput.value = "";
+      todos = [];
+      todoList.innerHTML = "";
+      focusCardEl.style.display = "none";
+      todayResultWrap.innerHTML = "";
+      laterResultWrap.innerHTML = "";
+      renderProgress();
+      renderChecklist();
+      renderTodos();
+      setStatus("✓ 모든 데이터가 초기화되었습니다. 페이지를 새로고침해주세요.", false);
     }
 
     function saveToken() {
@@ -1466,6 +1478,7 @@
 
     saveTokenBtn.addEventListener("click", saveToken);
     clearTokenBtn.addEventListener("click", clearToken);
+    resetStorageBtn.addEventListener("click", resetStorage);
     copyTokenPathBtn.addEventListener("click", copyTokenPath);
     addTodoBtn.addEventListener("click", addTodo);
     voiceTodoBtn.addEventListener("click", toggleVoiceInput);
