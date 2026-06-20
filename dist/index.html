@@ -83,8 +83,7 @@
       gap: 16px;
     }
 
-    .steps,
-    .checklist {
+    .steps {
       display: grid;
       gap: 10px;
       margin: 0;
@@ -92,35 +91,24 @@
       list-style: none;
     }
 
-    .step-item,
-    .check-item {
+    .step-item {
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 12px;
       background: rgba(17, 24, 39, 0.56);
     }
 
-    .step-title,
-    .check-title {
+    .step-title {
       margin: 0 0 6px;
       font-size: 15px;
       font-weight: 800;
     }
 
-    .step-text,
-    .check-text {
+    .step-text {
       margin: 0;
       font-size: 13px;
       line-height: 1.5;
       color: var(--muted);
-    }
-
-    .check-ok {
-      color: #b9f6ca;
-    }
-
-    .check-wait {
-      color: #ffe082;
     }
 
     .card {
@@ -793,6 +781,7 @@
     let todos = [];
     let recognition = null;
     let isListening = false;
+    let voiceSetupDone = false;
 
     function uid() {
       return `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
@@ -1015,6 +1004,15 @@
       }
     }
 
+    function ensureVoiceInputSetup() {
+      if (voiceSetupDone) {
+        return;
+      }
+
+      voiceSetupDone = true;
+      setupVoiceInput();
+    }
+
     async function requestMicrophonePermission() {
       try {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -1035,6 +1033,8 @@
     }
 
     async function toggleVoiceInput() {
+      ensureVoiceInputSetup();
+
       if (!recognition) {
         setVoiceStatus("이 브라우저에서는 음성 입력을 사용할 수 없습니다.", "error");
         return;
@@ -1496,7 +1496,6 @@
     });
 
     loadTodos();
-    setupVoiceInput();
     restoreToken();
     renderTodos();
     restoreAnalysis();
